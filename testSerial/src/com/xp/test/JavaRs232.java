@@ -34,7 +34,7 @@ import javax.swing.border.EmptyBorder;
 public class JavaRs232 extends JFrame implements ActionListener, SerialPortEventListener {  
   
     /** 
-     * JDK Serial Version UID 
+     * JDK Serial Version UID 。
      */  
     private static final long serialVersionUID = -7270865686330790103L;  
   
