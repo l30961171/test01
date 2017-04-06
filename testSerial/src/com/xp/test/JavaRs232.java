@@ -34,7 +34,7 @@ import javax.swing.border.EmptyBorder;
 public class JavaRs232 extends JFrame implements ActionListener, SerialPortEventListener {  
   
     /** 
-     * JDK Serial Version UID 。
+     * JDK Serial Version UID
      */  
     private static final long serialVersionUID = -7270865686330790103L;  
   
@@ -74,7 +74,7 @@ protected int sendCount, reciveCount;
      * 默认构造函数 
      */  
     public JavaRs232() {          
-        super("Java RS-232串口通信测试程序   凡梦星尘");  
+        super("Java RS-232串口通信测试程序");  
         setSize(WIN_WIDTH, WIN_HEIGHT);  
         setLocationRelativeTo(null);  
 //        Image icon = null;  
@@ -398,11 +398,17 @@ protected int sendCount, reciveCount;
                 groupData += receivedMsg.toString();
                 if((groupData.startsWith("DAFE") && groupData.endsWith("EE"))){
                 	receivedMsg.append("\n");
+                	if(groupData.length() > 10){
+	                	//清空
+                		mesg = groupData.substring(0, 6) + "EE";
+                		System.out.println(mesg);
+	                	sendDataToSeriaPort();
+                	}
                 	groupData = "";
                 }
                 readTa.append(receivedMsg.toString());  
                 reciveCount++;  
-                statusLb.setText("  发送: "+sendCount+"                                      接收: "+reciveCount);  
+                statusLb.setText("  发送: "+sendCount+"    接收: "+reciveCount);  
             } catch (IOException e) {  
                 showErrMesgbox(e.getMessage());  
             }  
