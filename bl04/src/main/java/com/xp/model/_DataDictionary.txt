@@ -1,0 +1,285 @@
+Table: a_gdan
+------------------+---------------+------+-----+-------------------+---------
+ Field            | Type          | Null | Key | Default           | Remarks 
+------------------+---------------+------+-----+-------------------+---------
+ gdanId           | INT(10)       | NO   | PRI |                   |         
+ gdanNum          | VARCHAR(255)  | NO   |     |                   | 工单单号    
+ macNum           | VARCHAR(255)  | NO   |     |                   | 机台编码    
+ muJuNum          | VARCHAR(255)  | NO   |     |                   | 模具编号    
+ custNum          | VARCHAR(255)  | NO   |     |                   | 客户编码    
+ matNum           | VARCHAR(255)  | NO   |     |                   | 物料号     
+ gdanColor        | VARCHAR(255)  | YES  |     |                   | 生产颜色    
+ biaoZhunChanNeng | INT(10)       | NO   |     | 0                 | 标准产能    
+ liLunZhouQi      | INT(10)       | NO   |     |                   | 0       
+ muXue            | INT(10)       | NO   |     | 0                 | 模穴      
+ dingDanQty       | INT(10)       | NO   |     | 0                 | 订单数量    
+ shengChanQianShu | INT(10)       | NO   |     | 0                 | 生产欠数    
+ paiDanRiQi       | DATE(10)      | NO   |     |                   | 派单日期    
+ jieShuRiQi       | DATE(10)      | NO   |     |                   | 结束日期    
+ isUse            | ENUM(2)       | NO   |     | y                 | 是否在用    
+ remark           | VARCHAR(255)  | YES  |     |                   |         
+ addDate          | TIMESTAMP(19) | NO   |     | CURRENT_TIMESTAMP | 创建日期    
+ addUser          | VARCHAR(255)  | NO   |     |                   |         
+ altDate          | TIMESTAMP(19) | NO   |     | CURRENT_TIMESTAMP |         
+ altUser          | VARCHAR(255)  | NO   |     |                   |         
+------------------+---------------+------+-----+-------------------+---------
+
+Table: a_mac
+------------+---------------+------+-----+-------------------+---------
+ Field      | Type          | Null | Key | Default           | Remarks 
+------------+---------------+------+-----+-------------------+---------
+ macNum     | VARCHAR(255)  | NO   | PRI |                   | 机台编号    
+ macName    | VARCHAR(255)  | NO   |     |                   | 机台名称    
+ macTonId   | INT(10)       | YES  |     |                   | 吨位      
+ macTypeId  | INT(10)       | YES  |     |                   | 类型      
+ macClassId | INT(10)       | YES  |     |                   | 班组      
+ isUse      | ENUM(2)       | NO   |     | y                 | 是否在用    
+ remark     | VARCHAR(255)  | YES  |     |                   |         
+ addDate    | TIMESTAMP(19) | NO   |     | CURRENT_TIMESTAMP | 创建日期    
+ addUser    | VARCHAR(255)  | NO   |     |                   |         
+ altDate    | TIMESTAMP(19) | NO   |     | CURRENT_TIMESTAMP |         
+ altUser    | VARCHAR(255)  | NO   |     |                   |         
+------------+---------------+------+-----+-------------------+---------
+
+Table: a_mac_fault
+--------------+---------------+------+-----+-------------------+---------
+ Field        | Type          | Null | Key | Default           | Remarks 
+--------------+---------------+------+-----+-------------------+---------
+ macFaultNum  | VARCHAR(255)  | NO   | PRI |                   | 机台故障原因代码
+ macFaultName | VARCHAR(255)  | YES  |     |                   | 机台故障原因描述
+ isUse        | ENUM(2)       | NO   |     | y                 | 是否在用    
+ remark       | VARCHAR(255)  | YES  |     |                   |         
+ addDate      | TIMESTAMP(19) | NO   |     | CURRENT_TIMESTAMP | 创建日期    
+ addUser      | VARCHAR(255)  | NO   |     |                   |         
+ altDate      | TIMESTAMP(19) | NO   |     | CURRENT_TIMESTAMP |         
+ altUser      | VARCHAR(255)  | NO   |     |                   |         
+--------------+---------------+------+-----+-------------------+---------
+
+Table: a_mac_fault_rec
+---------------+---------------+------+-----+-------------------+---------
+ Field         | Type          | Null | Key | Default           | Remarks 
+---------------+---------------+------+-----+-------------------+---------
+ macFaultRecId | BIGINT(19)    | NO   | PRI |                   |         
+ macNum        | VARCHAR(255)  | NO   |     |                   |         
+ macFaultNum   | VARCHAR(255)  | NO   |     |                   |         
+ startTime     | TIMESTAMP(19) | NO   |     | CURRENT_TIMESTAMP |         
+ endTime       | TIMESTAMP(19) | NO   |     | CURRENT_TIMESTAMP |         
+---------------+---------------+------+-----+-------------------+---------
+
+Table: a_mac_ton
+----------+---------------+------+-----+-------------------+---------
+ Field    | Type          | Null | Key | Default           | Remarks 
+----------+---------------+------+-----+-------------------+---------
+ macTonId | INT(10)       | NO   | PRI |                   |         
+ tonName  | VARCHAR(255)  | YES  |     |                   | 吨位名     
+ tonValue | DOUBLE(22)    | YES  |     |                   | 吨位值     
+ isUse    | ENUM(2)       | NO   |     | y                 | 是否在用    
+ remark   | VARCHAR(255)  | YES  |     |                   |         
+ addDate  | TIMESTAMP(19) | NO   |     | CURRENT_TIMESTAMP | 创建日期    
+ addUser  | VARCHAR(255)  | NO   |     |                   |         
+ altDate  | TIMESTAMP(19) | NO   |     | CURRENT_TIMESTAMP |         
+ altUser  | VARCHAR(255)  | NO   |     |                   |         
+----------+---------------+------+-----+-------------------+---------
+
+Table: a_mac_type
+-------------+---------------+------+-----+-------------------+---------
+ Field       | Type          | Null | Key | Default           | Remarks 
+-------------+---------------+------+-----+-------------------+---------
+ macTypeId   | INT(10)       | NO   | PRI |                   |         
+ macTypeName | VARCHAR(255)  | YES  |     |                   | 机台类型名称  
+ isUse       | ENUM(2)       | NO   |     | y                 | 是否在用    
+ remark      | VARCHAR(255)  | YES  |     |                   |         
+ addDate     | TIMESTAMP(19) | NO   |     | CURRENT_TIMESTAMP | 创建日期    
+ addUser     | VARCHAR(255)  | NO   |     |                   |         
+ altDate     | TIMESTAMP(19) | NO   |     | CURRENT_TIMESTAMP |         
+ altUser     | VARCHAR(255)  | NO   |     |                   |         
+-------------+---------------+------+-----+-------------------+---------
+
+Table: a_mat_kucun
+---------+--------------+------+-----+---------+---------
+ Field   | Type         | Null | Key | Default | Remarks 
+---------+--------------+------+-----+---------+---------
+ id      | INT(10)      | NO   | PRI |         |         
+ matNo   | VARCHAR(255) | YES  |     |         | 物料号     
+ matName | VARCHAR(255) | YES  |     |         | 物料名     
+ kucun   | DOUBLE(22)   | YES  |     |         | 库存      
+---------+--------------+------+-----+---------+---------
+
+Table: io_origin_rec
+------------+----------------+------+-----+-------------------+---------
+ Field      | Type           | Null | Key | Default           | Remarks 
+------------+----------------+------+-----+-------------------+---------
+ recId      | BIGINT(19)     | NO   | PRI |                   |         
+ recSeq     | VARCHAR(255)   | NO   |     |                   |         
+ plantId    | VARCHAR(10)    | NO   |     |                   |         
+ cardNumber | VARCHAR(10)    | NO   |     |                   |         
+ sign       | VARCHAR(8)     | NO   |     |                   |         
+ originStr  | VARCHAR(20000) | NO   |     |                   |         
+ createTime | TIMESTAMP(19)  | NO   |     | CURRENT_TIMESTAMP |         
+------------+----------------+------+-----+-------------------+---------
+
+Table: io_sign_rec
+------------+---------------+------+-----+-------------------+---------
+ Field      | Type          | Null | Key | Default           | Remarks 
+------------+---------------+------+-----+-------------------+---------
+ signRecId  | VARCHAR(36)   | NO   | PRI |                   |         
+ compId     | VARCHAR(10)   | NO   |     |                   |         
+ cardNumber | VARCHAR(4)    | NO   |     |                   |         
+ signN      | INT(10)       | NO   |     | 0                 | 来自哪个信号量 
+ createTime | TIMESTAMP(19) | NO   |     | CURRENT_TIMESTAMP |         
+------------+---------------+------+-----+-------------------+---------
+
+Table: kb_dianshi_01
+------------------+---------------+------+-----+-------------------+---------
+ Field            | Type          | Null | Key | Default           | Remarks 
+------------------+---------------+------+-----+-------------------+---------
+ id               | VARCHAR(255)  | NO   | PRI |                   |         
+ macNo            | VARCHAR(10)   | NO   |     |                   |         
+ zhuangTai        | VARCHAR(255)  | NO   |     |                   |         
+ matName          | VARCHAR(255)  | NO   |     |                   |         
+ biaoZhunChanNeng | INT(10)       | NO   |     |                   |         
+ zhuSuQty         | INT(10)       | NO   |     |                   |         
+ yaJianQty        | INT(10)       | NO   |     |                   |         
+ zhuangXiangQty   | INT(10)       | NO   |     |                   |         
+ buLiangQty       | INT(10)       | NO   |     |                   |         
+ banCiDate        | VARCHAR(10)   | NO   |     | 0                 |         
+ banBie           | VARCHAR(1)    | NO   |     | A                 |         
+ createUser       | VARCHAR(255)  | NO   |     |                   |         
+ createTime       | TIMESTAMP(19) | NO   |     | CURRENT_TIMESTAMP |         
+------------------+---------------+------+-----+-------------------+---------
+
+Table: kb_dianshi_01_rec
+------------------+---------------+------+-----+-------------------+---------
+ Field            | Type          | Null | Key | Default           | Remarks 
+------------------+---------------+------+-----+-------------------+---------
+ id               | VARCHAR(255)  | NO   | PRI |                   |         
+ macNo            | VARCHAR(10)   | NO   |     |                   |         
+ zhuangTai        | VARCHAR(255)  | NO   |     |                   |         
+ matName          | VARCHAR(255)  | NO   |     |                   |         
+ biaoZhunChanNeng | INT(10)       | NO   |     |                   |         
+ zhuSuQty         | INT(10)       | NO   |     |                   |         
+ yaJianQty        | INT(10)       | NO   |     |                   |         
+ zhuangXiangQty   | INT(10)       | NO   |     |                   |         
+ buLiangQty       | INT(10)       | NO   |     |                   |         
+ banCiDate        | VARCHAR(10)   | NO   |     | 0                 |         
+ banBie           | VARCHAR(1)    | NO   |     | A                 |         
+ createUser       | VARCHAR(255)  | NO   |     |                   |         
+ createTime       | TIMESTAMP(19) | NO   |     | CURRENT_TIMESTAMP |         
+------------------+---------------+------+-----+-------------------+---------
+
+Table: notice
+---------------+---------------+------+-----+-------------------+---------
+ Field         | Type          | Null | Key | Default           | Remarks 
+---------------+---------------+------+-----+-------------------+---------
+ noticeId      | INT(10)       | NO   | PRI |                   |         
+ noticeTypeId  | INT(10)       | NO   |     |                   |         
+ noticeTitle   | VARCHAR(200)  | NO   |     |                   |         
+ noticeContent | TEXT(65535)   | NO   |     |                   |         
+ lastUpdate    | TIMESTAMP(19) | NO   |     | CURRENT_TIMESTAMP |         
+ addTime       | TIMESTAMP(19) | NO   |     | CURRENT_TIMESTAMP |         
+---------------+---------------+------+-----+-------------------+---------
+
+Table: notice_type
+----------------+--------------+------+-----+---------+---------
+ Field          | Type         | Null | Key | Default | Remarks 
+----------------+--------------+------+-----+---------+---------
+ noticeTypeId   | INT(10)      | NO   | PRI |         |         
+ noticeTypeName | VARCHAR(100) | NO   |     |         |         
+ noticeTypeOrd  | INT(10)      | YES  |     | 100     | 排序      
+----------------+--------------+------+-----+---------+---------
+
+Table: web_access_log
+-----------+---------------+------+-----+-------------------+---------
+ Field     | Type          | Null | Key | Default           | Remarks 
+-----------+---------------+------+-----+-------------------+---------
+ logId     | BIGINT(19)    | NO   | PRI |                   | 唯一标识    
+ logIP     | VARCHAR(15)   | NO   |     |                   | 客户端IP   
+ userId    | INT(10)       | NO   |     |                   | 用户编号    
+ logHandle | VARCHAR(20)   | NO   |     |                   | 操作      
+ logTime   | TIMESTAMP(19) | NO   |     | CURRENT_TIMESTAMP | 记录时间    
+-----------+---------------+------+-----+-------------------+---------
+
+Table: web_auth_obj
+-----------+--------------+------+-----+---------+---------
+ Field     | Type         | Null | Key | Default | Remarks 
+-----------+--------------+------+-----+---------+---------
+ authId    | INT(10)      | NO   | PRI |         | 唯一标识    
+ roleId    | INT(10)      | YES  |     |         | 角色ID    
+ authName  | VARCHAR(255) | YES  |     |         | 权限对象名   
+ authValue | VARCHAR(255) | YES  |     |         | 权限对象值   
+-----------+--------------+------+-----+---------+---------
+
+Table: web_menu
+------------+--------------+------+-----+---------+---------
+ Field      | Type         | Null | Key | Default | Remarks 
+------------+--------------+------+-----+---------+---------
+ menuId     | INT(10)      | NO   | PRI |         | 唯一标识    
+ menuFid    | INT(10)      | NO   |     | 0       | 上级ID    
+ menuName   | VARCHAR(255) | NO   |     |         | 节点名称    
+ menuRemark | VARCHAR(255) | YES  |     |         | 备注      
+ menuUrl    | VARCHAR(255) | YES  |     |         | 节点转跳地址  
+ menuIcon   | VARCHAR(255) | YES  |     |         | 节点图标    
+ menuOrd    | INT(10)      | NO   |     | 100     | 排序，数值小的在前面
+ isShow     | ENUM(2)      | YES  |     | y       | 是否显示在左边菜单栏
+------------+--------------+------+-----+---------+---------
+
+Table: web_role
+------------+--------------+------+-----+---------+---------
+ Field      | Type         | Null | Key | Default | Remarks 
+------------+--------------+------+-----+---------+---------
+ roleId     | INT(10)      | NO   | PRI |         | 唯一标识    
+ roleName   | VARCHAR(45)  | NO   |     |         | 角色名称    
+ roleFid    | INT(10)      | NO   |     | 0       | 上级ID    
+ roleRemark | VARCHAR(255) | YES  |     |         | 备注      
+ roleCode   | VARCHAR(255) | YES  |     |         | 角色代码    
+------------+--------------+------+-----+---------+---------
+
+Table: web_role_menu
+--------+---------+------+-----+---------+---------
+ Field  | Type    | Null | Key | Default | Remarks 
+--------+---------+------+-----+---------+---------
+ menuId | INT(10) | NO   | PRI |         | 节点ID    
+ roleId | INT(10) | NO   | PRI |         | 角色ID    
+--------+---------+------+-----+---------+---------
+
+Table: web_sys_parm
+------------+---------------+------+-----+----------+---------
+ Field      | Type          | Null | Key | Default  | Remarks 
+------------+---------------+------+-----+----------+---------
+ parmId     | BIGINT(19)    | NO   | PRI |          | 唯一标识    
+ parmKey    | VARCHAR(255)  | NO   |     | key_     | 参数名     
+ parmValue  | VARCHAR(1000) | NO   |     |          | 参数值     
+ parmGroup  | VARCHAR(255)  | NO   |     | default_ | 参数分组    
+ parmRemark | VARCHAR(255)  | YES  |     | 备注       | 备注      
+------------+---------------+------+-----+----------+---------
+
+Table: web_user
+------------+--------------+------+-----+---------+---------
+ Field      | Type         | Null | Key | Default | Remarks 
+------------+--------------+------+-----+---------+---------
+ userId     | INT(10)      | NO   | PRI |         | 唯一标识    
+ userNum    | VARCHAR(100) | NO   |     |         | 用户登录账号  
+ userName   | VARCHAR(100) | NO   |     |         | 用户名称    
+ userPsw    | VARCHAR(100) | NO   |     |         | 用户登录密码  
+ userCom    | VARCHAR(100) | YES  |     |         | 公司名称    
+ userMobile | VARCHAR(100) | YES  |     |         | 联系方式    
+ userEmail  | VARCHAR(100) | YES  |     |         | 用户邮箱    
+ userRemark | VARCHAR(255) | YES  |     |         | 备注      
+------------+--------------+------+-----+---------+---------
+
+Table: web_user_psw
+---------+--------------+------+-----+---------+---------
+ Field   | Type         | Null | Key | Default | Remarks 
+---------+--------------+------+-----+---------+---------
+ userId  | INT(10)      | NO   | PRI |         |         
+ userPsw | VARCHAR(255) | YES  |     |         | 登录密码    
+---------+--------------+------+-----+---------+---------
+
+Table: web_user_role
+--------+---------+------+-----+---------+---------
+ Field  | Type    | Null | Key | Default | Remarks 
+--------+---------+------+-----+---------+---------
+ userId | INT(10) | NO   | PRI |         | 用户ID    
+ roleId | INT(10) | NO   | PRI |         | 角色ID    
+--------+---------+------+-----+---------+---------
+
